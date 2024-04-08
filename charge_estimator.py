@@ -13,9 +13,11 @@ def estimate_charge_time(current_charge, battery_capacity, charger_current):
     Returns:
     float: The estimated time in hours to charge the phone to 80%.
     """
+    # Check if the current charge level is already over 79%
+    if current_charge >= 79:
+        return 0 # No need to calculate, already charged to or above 80%
+
     # Calculate the time to charge to 80%
-    # Assuming a 5V USB charger, we convert the charger current to mA
-    # Adjusting the formula to ensure it's more accurate
     time_to_charge = (80 - current_charge) / (charger_current / (battery_capacity / 100))
 
     # Ensure the time is not negative
@@ -34,6 +36,9 @@ charger_current = st.number_input("Enter the charger current (mA):", min_value=0
 # Calculate and display the estimate
 if current_charge and battery_capacity and charger_current:
     estimated_time = estimate_charge_time(current_charge, battery_capacity, charger_current)
-    st.write(f"Estimated time to charge to 80%: {estimated_time} hours")
+    if estimated_time == 0:
+        st.write("Your phone is already charged to or above 80%. No further charging is needed.")
+    else:
+        st.write(f"Estimated time to charge to 80%: {estimated_time} hours")
 else:
     st.write("Please enter all the required information.")
