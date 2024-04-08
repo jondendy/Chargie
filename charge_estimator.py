@@ -15,7 +15,8 @@ def estimate_charge_time(current_charge, battery_capacity, charger_current):
     """
     # Calculate the time to charge to 80%
     # Assuming a 5V USB charger, we convert the charger current to mA
-    time_to_charge = (current_charge - 80) / (charger_current / battery_capacity)
+    # Adjusting the formula to ensure it's more accurate
+    time_to_charge = (80 - current_charge) / (charger_current / (battery_capacity / 100))
 
     # Ensure the time is not negative
     if time_to_charge < 0:
@@ -30,7 +31,7 @@ current_charge = st.number_input("Enter the current charge level (%):", min_valu
 battery_capacity = st.number_input("Enter the battery capacity (mAh):", min_value=0, value=0)
 charger_current = st.number_input("Enter the charger current (mA):", min_value=0, value=0)
 
-# Validate inputs and calculate the estimate
+# Calculate and display the estimate
 if current_charge and battery_capacity and charger_current:
     estimated_time = estimate_charge_time(current_charge, battery_capacity, charger_current)
     st.write(f"Estimated time to charge to 80%: {estimated_time} hours")
