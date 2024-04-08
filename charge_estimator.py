@@ -26,6 +26,23 @@ def estimate_charge_time(current_charge, battery_capacity, charger_current):
 
     return time_to_charge
 
+def format_charge_time(time_to_charge):
+    """
+    Formats the estimated charge time for display.
+
+    Parameters:
+    time_to_charge (float): The estimated time in hours to charge the phone to 80%.
+
+    Returns:
+    str: The formatted time string.
+    """
+    if time_to_charge >= 1:
+        # If the time is more than an hour, round to the nearest hour
+        return f"{round(time_to_charge)} hours"
+    else:
+        # If the time is less than an hour, convert to minutes and round to the nearest minute
+        return f"{round(time_to_charge * 60)} minutes"
+
 st.title("Mobile Phone Charge Estimator")
 
 # Collect user inputs
@@ -39,6 +56,7 @@ if current_charge and battery_capacity and charger_current:
     if estimated_time == 0:
         st.write("Your phone is already charged to or above 80%. No further charging is needed.")
     else:
-        st.write(f"Estimated time to charge to 80%: {estimated_time} hours")
+        formatted_time = format_charge_time(estimated_time)
+        st.write(f"Estimated time to charge to 80%: {formatted_time}")
 else:
     st.write("Please enter all the required information.")
