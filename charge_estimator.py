@@ -30,7 +30,7 @@ current_charge = st.number_input("Enter the current charge level (%):", min_valu
 battery_capacity = st.number_input("Enter the battery capacity (mAh):", min_value=0, value=0)
 charger_current = st.number_input("Enter the charger current (mA):", min_value=0, value=0)
 
-# Calculate and display the estimate
+# Validate inputs and calculate the estimate
 if current_charge and battery_capacity and charger_current:
     estimated_time = estimate_charge_time(current_charge, battery_capacity, charger_current)
     st.write(f"Estimated time to charge to 80%: {estimated_time} hours")
