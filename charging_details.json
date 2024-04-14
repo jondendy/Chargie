@@ -1,0 +1,16 @@
+[
+    {
+        "device_name": "Tablet test",
+        "date": "09/04/2024",
+        "time": "00:00",
+        "charge_length": "1.5",
+        "charge_outcome": "100"
+    },
+    {
+        "device_name": "Tablet test 2",
+        "date": "14/04/2024",
+        "time": "16:26",
+        "charge_length": "1.5",
+        "charge_outcome": "100"
+    }
+]
